@@ -7,11 +7,13 @@ import App from "./App.tsx";
 import Sample from "./Sample.tsx";
 
 import "./index.css";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
+    errorElement: <NotFoundPage />
   },
   {
     path: "/sample",
