@@ -5,10 +5,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.tsx";
 import "./index.css";
-import NotFoundPage from "./pages/NotFoundPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import NavigationBar from "./components/NavigationBar.tsx";
+import ProductsPage from "./pages/Products/ProductsPage.tsx";
+import NotFoundPage from "./pages/Errors/NotFoundPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+    errorElement: <NotFoundPage />
+  },
+  {
+    path: "/products",
+    element: <ProductsPage />,
     errorElement: <NotFoundPage />
   },
 
