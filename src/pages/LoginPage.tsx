@@ -1,9 +1,9 @@
-import {Button, Card, CardBody,CardFooter,CardHeader, Input} from "@nextui-org/react";
+import {Button, Card, CardBody,CardFooter,CardHeader, Checkbox, Input} from "@nextui-org/react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   return (
-    <div className="h-screen flex">
+    <div className="min-h-screen flex">
         <div className="max-w-lg m-auto flex items-center justify-center lg:px-4 md:px-2 px-1">
             <Card fullWidth>
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
@@ -14,6 +14,7 @@ const LoginPage = () => {
                     <form>
                         <Input type="email" label="Email" className="mb-3 md:w-96 sm:w-72" isRequired/>
                         <Input type="password" label="Password" className="mb-3 md:w-96 sm:w-72" isRequired/>
+                        <Checkbox defaultSelected size="sm" radius="sm" className="mb-3">Remember Me</Checkbox>
                         <Button color="primary" className="w-full">
                             Login
                         </Button>
