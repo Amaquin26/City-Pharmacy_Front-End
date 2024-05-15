@@ -8,6 +8,7 @@ import "./index.css";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
+import NavigationBar from "./components/NavigationBar.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <NextUIProvider>
-      <RouterProvider router={router} />
+      <main className="text-foreground bg-background">
+        <NavigationBar />
+        <RouterProvider router={router} />
+      </main>    
     </NextUIProvider>
   </React.StrictMode>
 );
