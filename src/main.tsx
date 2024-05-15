@@ -4,10 +4,10 @@ import { NextUIProvider } from "@nextui-org/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.tsx";
-import Sample from "./Sample.tsx";
-
 import "./index.css";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,9 +16,16 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />
   },
   {
-    path: "/sample",
-    element: <Sample />
-  }
+    path: "/login",
+    element: <LoginPage />,
+    errorElement: <NotFoundPage />
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    errorElement: <NotFoundPage />
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
