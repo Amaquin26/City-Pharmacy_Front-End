@@ -1,4 +1,4 @@
-import React, { Key, useCallback } from "react";
+import React from "react";
 import {
   Table,
   TableHeader,
@@ -6,82 +6,89 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  User,
   Chip,
   Tooltip,
   Avatar,
   Button,
 } from "@nextui-org/react";
-import { EyeIcon } from "../../components/Icons/EyeIcon ";
-import { EditIcon } from "../../components/Icons/EditIcon";
-import { DeleteIcon } from "../../components/Icons/DeleteIcon ";
-import type { Product } from "../../types/types";
-import { formatCurrency } from "../../utils/format";
-import { colorAvailability } from "../../utils/colorCoding";
+import { EyeIcon } from "../../../components/Icons/EyeIcon ";
+import { EditIcon } from "../../../components/Icons/EditIcon";
+import { DeleteIcon } from "../../../components/Icons/DeleteIcon ";
+import type { Medicine } from "../../../types/types";
+import { formatCurrency } from "../../../utils/format";
+import { colorAvailability } from "../../../utils/colorCoding";
 
 const columns = [
-  {
-    key: "id",
-    label: "ID",
-  },
-  {
-    key: "image",
-    label: "",
-  },
-  {
-    key: "name",
-    label: "Name",
-  },
-  {
-    key: "manufacturer",
-    label: "Manufacturer",
-  },
-  {
-    key: "category",
-    label: "Category",
-  },
-  {
-    key: "size",
-    label: "Packaging Size",
-  },
-  {
-    key: "price",
-    label: "Price",
-  },
-  {
-    key: "qty",
-    label: "Quantity",
-  },
-  {
-    key: "availability",
-    label: "Availability",
-  },
-  {
-    key: "action",
-    label: "Actions"
-  }
-];
+    {
+      key: "id",
+      label: "ID",
+    },
+    {
+      key: "image",
+      label: "",
+    },
+    {
+      key: "name",
+      label: "Name",
+    },
+    {
+        key: "brandName",
+        label: "Brand Name",
+    },
+    {
+        key: "genericName",
+        label: "Generic Name",
+    },
+    {
+      key: "manufacturer",
+      label: "Manufacturer",
+    },
+    {
+      key: "strength",
+      label: "Strength",
+    },
+    {
+      key: "dosageForm",
+      label: "Dosage Form",
+    },
+    {
+      key: "price",
+      label: "Price",
+    },
+    {
+      key: "qty",
+      label: "Quantity",
+    },
+    {
+      key: "availability",
+      label: "Availability",
+    },
+    {
+      key: "action",
+      label: "Actions"
+    }
+  ];
 
-const ProductsTable: React.FC<{
-  data?: Product[];
-  isLoading?: boolean;
-  removeWrapper?: boolean;
-  setProduct: React.Dispatch<React.SetStateAction<Product>>
-  onOpen: () => void
-}> = ({ data = [], isLoading = false, removeWrapper = false, onOpen,setProduct }) => {
-
-    const quickView = (item: Product) => {
-        setProduct(item);
+const MedicineTable: React.FC<{
+    data?: Medicine[];
+    isLoading?: boolean;
+    removeWrapper?: boolean;
+    setMedicine: React.Dispatch<React.SetStateAction<Medicine>>
+    onOpen: () => void
+  }> = ({ data = [], isLoading = false, removeWrapper = false, onOpen,setMedicine }) => {
+  
+    const quickView = (item: Medicine) => {
+        setMedicine(item);
         onOpen();
     }
 
-    return (
-        <Table aria-label="Example empty table" removeWrapper={removeWrapper}>
+  return (
+    <Table removeWrapper={removeWrapper}>
         <TableHeader columns={columns}>
             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
         </TableHeader>
         <TableBody
-            emptyContent={"No Products To Display."}
+            emptyContent={"No Medicine To Display."}
             items={data}
             isLoading={isLoading}
         >
@@ -92,9 +99,11 @@ const ProductsTable: React.FC<{
                     <Avatar src={item.image} size="lg" radius="sm"/>
                 </TableCell>
                 <TableCell>{item.name}</TableCell>
+                <TableCell>{item.brandName}</TableCell>
+                <TableCell>{item.genericName}</TableCell>
                 <TableCell>{item.manufacturer}</TableCell>
-                <TableCell>{item.category}</TableCell>
-                <TableCell>{item.packagingSize}</TableCell>
+                <TableCell>{item.strength}</TableCell>
+                <TableCell>{item.dosageForm}</TableCell>
                 <TableCell>{formatCurrency(item.price)}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
                 <TableCell>
@@ -125,8 +134,7 @@ const ProductsTable: React.FC<{
             )}
         </TableBody>
         </Table>
-    );
-};
+  )
+}
 
-export default ProductsTable;
-
+export default MedicineTable

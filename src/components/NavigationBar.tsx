@@ -28,7 +28,7 @@ export default function NavigationBar() {
         />
         <NavbarBrand>
           <CompanyLogo />
-          <p className="font-bold text-inherit">City Pharmacy</p>
+          <p className="font-bold text-inherit ml-2">City Pharmacy</p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -43,8 +43,8 @@ export default function NavigationBar() {
             Products
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/medicines">
+        <NavbarItem /* isActive */>
+          <Link color="foreground" href="/medicines">
             Medicines
           </Link>
         </NavbarItem>

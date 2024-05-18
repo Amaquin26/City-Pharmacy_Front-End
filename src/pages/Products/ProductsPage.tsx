@@ -1,9 +1,9 @@
 import { Button, Pagination, useDisclosure } from '@nextui-org/react';
 import SearchInput from '../../components/SearchInput';
 import products from '../../data/placeholder/products';
-import ProductsTable from './ProductsTable';
-import ProductQuickViewModal from './ProductQuickViewModal';
-import { useEffect, useState } from 'react';
+import ProductsTable from './components/ProductsTable';
+import ProductQuickViewModal from './components/ProductQuickViewModal';
+import { useState } from 'react';
 import { Product } from '../../types/types';
 
 
@@ -20,12 +20,9 @@ const ProductsPage = () => {
         warningsPrecautions: "",
         packagingSize: "",
         price: 0,
-        expirationDate: new Date(),
-        barcode: "",
         storageConditions: "",
         image: "",
-        promotionalInformation: "",
-        nutritionalInformation: "",
+        storageLocation: "",
         availability: "",
         quantity: 0
     };
@@ -39,16 +36,17 @@ const ProductsPage = () => {
                 <SearchInput placeholder='Search products...'/>
 
                 <div className='mt-10'>
+
                     <ProductsTable data={products} onOpen={onOpen} setProduct={setProduct}/>                   
                 </div>
-                <div className='my-5 flex justify-center'>
+                <div className='my-5 flex justify-centezr'>
                     <Pagination showControls total={10} initialPage={1} />
                 </div>
             </div>
             
             <ProductQuickViewModal isOpen={isOpen} onOpenChange={onOpenChange} product={product}/>
         </div>
-  )
+    )
 }
 
 export default ProductsPage
