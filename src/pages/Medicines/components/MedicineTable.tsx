@@ -17,6 +17,7 @@ import { DeleteIcon } from "../../../components/Icons/DeleteIcon ";
 import type { Medicine } from "../../../types/types";
 import { formatCurrency } from "../../../utils/format";
 import { colorAvailability } from "../../../utils/colorCoding";
+import { Link } from "react-router-dom";
 
 const columns = [
     {
@@ -96,7 +97,9 @@ const MedicineTable: React.FC<{
             <TableRow key={item.id}>
                 <TableCell>{item.id}</TableCell>
                 <TableCell>
-                    <Avatar src={item.image} size="lg" radius="sm"/>
+                    <Link to={`/medicines/${item.id}`}>
+                      <Avatar src={item.image} size="lg" radius="sm"/>
+                    </Link>
                 </TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.brandName}</TableCell>

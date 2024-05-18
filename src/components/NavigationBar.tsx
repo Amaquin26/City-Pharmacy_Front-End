@@ -1,15 +1,20 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button, Dropdown, DropdownTrigger, Avatar, DropdownMenu, DropdownItem, Badge} from "@nextui-org/react";
 import {CompanyLogo} from "./CompanyLogo.tsx";
+import NightModeSwtich from "./NightModeSwtich.tsx";
+import { useDataContext } from '../api/context/DataContext.tsx'
 
 export default function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const {updateMode} = useDataContext(); 
 
   const menuItems = [
     {link: "/", name:"Dashboard"},
     {link: "/profile", name:"Profile"},
     {link: "/medicines", name:"Medicines"},
     {link: "/products", name:"Products"},
+    {link: "/inventory", name:"Inventory"},
+    {link: "/orders", name:"Orders"},
   ];
 
   const notLoggedInMenuItems = [
@@ -27,8 +32,10 @@ export default function NavigationBar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <CompanyLogo />
-          <p className="font-bold text-inherit ml-2">City Pharmacy</p>
+          <Link className="font-bold text-inherit" href="/">
+            <CompanyLogo />
+            <span className="ml-2">City Pharmacy</span>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -48,6 +55,16 @@ export default function NavigationBar() {
             Medicines
           </Link>
         </NavbarItem>
+        <NavbarItem /* isActive */>
+          <Link color="foreground" href="/inventory">
+            Inventory
+          </Link>
+        </NavbarItem>
+        <NavbarItem /* isActive */>
+          <Link color="foreground" href="/orders">
+            Orders
+          </Link>
+        </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="/profile">
             Profile
@@ -63,6 +80,36 @@ export default function NavigationBar() {
             Register
           </Button>
         </NavbarItem>
+
+        <Dropdown placement="bottom-end" closeOnSelect={false}>
+            <Badge content="" color="success" shape="circle" placement="bottom-right">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  color="primary"
+                  name="Jason Hughes"
+                  size="sm"
+                  src="/profiles/brayl.png"
+                />
+              </DropdownTrigger>
+            </Badge>
+          <DropdownMenu aria-label="Profile Actions" variant="flat">
+            <DropdownItem key="profile" className="h-14 gap-2">
+              <p className="font-semibold">Signed in as</p>
+              <p className="font-semibold">brayljamesamaquin@example.com</p>
+            </DropdownItem>
+            <DropdownItem key="mode">
+              <NightModeSwtich updateMode={updateMode}/>
+            </DropdownItem>
+            <DropdownItem key="settings">My Profile</DropdownItem>
+            <DropdownItem key="logout" color="danger">
+              Log Out
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item) => (

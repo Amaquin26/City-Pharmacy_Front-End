@@ -58,7 +58,7 @@ const MedicineViewPage = () => {
             <CardBody>
               <div className="flex gap-2 flex-col md:flex-row">
 
-                <div className="md:w-[40%]">
+                <div className="md:w-[60%]">
                   <Image
                     className="object-cover w-full"
                     height={200}
@@ -113,16 +113,15 @@ const MedicineViewPage = () => {
           </Card>
 
           <div className="flex w-full flex-col mt-5">
-            <Tabs 
-              aria-label="Options"   
+            <Tabs  
               color='primary'      
             >
               <Tab key="inventory" title="Inventory">
-                <Button className='my-2 float-end' color='primary' as={Link} variant='ghost' href='/medicines/inventory'>View All</Button>
+                <Button className='mt-1 mb-2 float-end' color='primary' as={Link} variant='ghost' href='/inventory'>View All</Button>
                 <DynamicTable columns={inventoryColumns} rows={inventoryData} emptyContentMessage={"No Inventory Data to Show."}/> 
               </Tab>
               <Tab key="order" title="Order History">
-                <Button className='my-2 float-end' color='primary' as={Link} variant='ghost' href='/orders'>View All</Button>
+                <Button className='mt-1 mb-2 float-end' color='primary' as={Link} variant='ghost' href='/orders'>View All</Button>
                 <DynamicTable columns={orderProductColumns} rows={orderProductData} emptyContentMessage={"No Inventory Data to Show."}/>  
               </Tab>
             </Tabs>

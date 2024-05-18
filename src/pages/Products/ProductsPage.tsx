@@ -36,10 +36,9 @@ const ProductsPage = () => {
                 <SearchInput placeholder='Search products...'/>
 
                 <div className='mt-10'>
-
                     <ProductsTable data={products} onOpen={onOpen} setProduct={setProduct}/>                   
                 </div>
-                <div className='my-5 flex justify-centezr'>
+                <div className='my-5 flex justify-center'>
                     <Pagination showControls total={10} initialPage={1} />
                 </div>
             </div>

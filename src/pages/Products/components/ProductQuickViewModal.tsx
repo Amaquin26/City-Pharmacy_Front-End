@@ -40,6 +40,7 @@ const ProductQuickViewModal: React.FC<{
                       <p className="text-base text-default-800">{product?.description}</p>
                     </div>                 
                     <div className="mt-2">
+                      <p className="text-small tracking-tight text-default-500">Storage Location: {product?.storageLocation}</p>
                       <p className="text-small tracking-tight text-default-500">{product?.storageConditions}</p>
                       <p className="text-small tracking-tight text-red-400">{product?.warningsPrecautions}</p>
                     </div>

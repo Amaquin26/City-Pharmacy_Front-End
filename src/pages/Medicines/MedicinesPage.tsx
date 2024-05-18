@@ -33,7 +33,7 @@ const MedicinesPage = () => {
   const [medicine, setMedicine] = useState<Medicine>(initialItem)
     
   return (
-    <div className="min-h-screen px-4">
+        <div className="min-h-screen px-4">
           <div className='md:w-4/5 m-auto mt-10'>
               <SearchInput placeholder='Search medicines...'/>
 
@@ -43,9 +43,8 @@ const MedicinesPage = () => {
               <div className='my-5 flex justify-center'>
                   <Pagination showControls total={10} initialPage={1} />
               </div>
-          </div>
-          
-          <MedicineQuickViewModal isOpen={isOpen} onOpenChange={onOpenChange} medicine={medicine}/>
+          </div>     
+            <MedicineQuickViewModal isOpen={isOpen} onOpenChange={onOpenChange} medicine={medicine}/>
       </div>
   )
 }

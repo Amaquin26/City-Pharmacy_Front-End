@@ -43,6 +43,7 @@ const MedicineQuickViewModal: React.FC<{
                       <p className="text-base text-default-800">{medicine?.description}</p>
                     </div>                 
                     <div className="mt-2">
+                      <p className="text-small tracking-tight text-default-500">Storage Location: {medicine?.storageLocation}</p>
                       <p className="text-small tracking-tight text-default-500">{medicine?.storageConditions}</p>
                       <p className="text-small tracking-tight text-default-500">{medicine?.therapeuticIndications}</p>
                       <p className="text-small tracking-tight text-default-500">{medicine?.intendedUse}</p>

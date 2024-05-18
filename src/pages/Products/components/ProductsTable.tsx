@@ -17,6 +17,7 @@ import { DeleteIcon } from "../../../components/Icons/DeleteIcon ";
 import type { Product } from "../../../types/types";
 import { formatCurrency } from "../../../utils/format";
 import { colorAvailability } from "../../../utils/colorCoding";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -88,7 +89,9 @@ const ProductsTable: React.FC<{
             <TableRow key={item.id}>
                 <TableCell>{item.id}</TableCell>
                 <TableCell>
-                    <Avatar src={item.image} size="lg" radius="sm"/>
+                    <Link to={`/products/${item.id}`}>
+                      <Avatar src={item.image} size="lg" radius="sm"/>
+                    </Link>
                 </TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.manufacturer}</TableCell>
