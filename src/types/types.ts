@@ -8,13 +8,45 @@ export type Product =  {
     warningsPrecautions: string;
     packagingSize: string;
     price: number;
-    expirationDate: Date;
-    barcode: string;
     storageConditions: string;
+    storageLocation: string;
     image: string; // URL to the image
-    promotionalInformation?: string;
-    nutritionalInformation?: string;
     availability: string;  
     quantity: number;
 }
   
+export type Medicine =  {
+    id: string;
+    name: string;
+    brandName: string;
+    genericName: string;
+    manufacturer: string;
+    nationalDrugCode:string;
+    description: string;
+    strength:string;
+    dosageForm:string,
+    packagingSize: string;
+    packagingType: string;
+    therapeuticIndications:string;
+    intendedUse:string
+    price: number;
+    storageConditions: string;
+    storageLocation: string;
+    image: string; // URL to the image
+    availability: string;  
+    quantity: number;
+}
+
+export type InventoryData = {
+    id: number;
+    date: Date;
+    beginningInventory: number;
+    endingInventory?: number;
+}
+
+export type OrderProducts = {
+    id: number;
+    date: Date;
+    quantity: number;
+    totalAmount: number;
+}
