@@ -65,11 +65,6 @@ export default function NavigationBar() {
             Orders
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/profile">
-            Profile
-          </Link>
-        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
@@ -96,14 +91,14 @@ export default function NavigationBar() {
               </DropdownTrigger>
             </Badge>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
+            <DropdownItem key="profile" className="h-14 gap-2" isReadOnly>
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">brayljamesamaquin@example.com</p>
             </DropdownItem>
             <DropdownItem key="mode">
               <NightModeSwtich updateMode={updateMode}/>
             </DropdownItem>
-            <DropdownItem key="settings">My Profile</DropdownItem>
+            <DropdownItem key="settings" href="/profile">My Profile</DropdownItem>
             <DropdownItem key="logout" color="danger">
               Log Out
             </DropdownItem>

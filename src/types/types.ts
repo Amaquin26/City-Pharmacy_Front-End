@@ -40,6 +40,7 @@ export type Medicine =  {
 export type InventoryData = {
     id: number;
     date: Date;
+    itemId: number;
     beginningInventory: number;
     endingInventory?: number;
 }
@@ -48,5 +49,19 @@ export type OrderProducts = {
     id: number;
     date: Date;
     quantity: number;
+    totalAmount: number;
+}
+
+export type AllOrderProducts = {
+    id: number;
+    date: Date;
+    totalItems: number;
+    totalAmount: number;
+}
+
+export type Orders = {
+    id: number;
+    date: Date;
+    totalItems: number;
     totalAmount: number;
 }
