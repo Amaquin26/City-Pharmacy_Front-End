@@ -2,7 +2,7 @@ import { Medicine } from "../../types/types";
 
 const medicines: Medicine[] = [
     {
-        id: "1",
+        id: 1,
         name: "Paracetamol",
         brandName: "Biogesic",
         genericName: "Paracetamol",

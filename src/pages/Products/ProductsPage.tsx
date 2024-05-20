@@ -1,17 +1,17 @@
-import { Button, Pagination, useDisclosure } from '@nextui-org/react';
+import { Pagination, Spinner, useDisclosure } from '@nextui-org/react';
 import SearchInput from '../../components/SearchInput';
-import products from '../../data/placeholder/products';
 import ProductsTable from './components/ProductsTable';
 import ProductQuickViewModal from './components/ProductQuickViewModal';
-import { useState } from 'react';
-import { Product } from '../../types/types';
+import { useEffect, useState } from 'react';
+import { ProductDto } from './type';
+import { getAllProducts } from './repo';
 
 
 const ProductsPage = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    const initialProduct: Product = {
-        id: "",
+    const initialProduct: ProductDto = {
+        id: 0,
         name: "",
         manufacturer: "",
         category: "",
@@ -27,8 +27,19 @@ const ProductsPage = () => {
         quantity: 0
     };
 
-    const [product, setProduct] = useState<Product>(initialProduct)
+    const [product, setProduct] = useState<ProductDto>(initialProduct);
+    const [productList,setProductList] = useState<ProductDto[]>([]);
+    const [isLoading,setIsLoading] = useState<boolean>(true);
 
+  useEffect(() => {
+    const onLoadPage = async () => {
+        const response = await getAllProducts();
+        setProductList(response);
+        setIsLoading(false);
+    }
+
+    onLoadPage();
+  }, [])
 
     return (
         <div className="min-h-screen px-4">
@@ -36,11 +47,17 @@ const ProductsPage = () => {
                 <SearchInput placeholder='Search products...'/>
 
                 <div className='mt-10'>
-                    <ProductsTable data={products} onOpen={onOpen} setProduct={setProduct}/>                   
+                    {isLoading ? (<div className='w-full flex justify-center items-center'>
+                        <Spinner size="lg"/>
+                    </div>) : (
+                        <ProductsTable data={productList} onOpen={onOpen} setProduct={setProduct}/> 
+                    )}                                      
                 </div>
-                <div className='my-5 flex justify-center'>
-                    <Pagination showControls total={10} initialPage={1} />
-                </div>
+                {!isLoading && (
+                    <div className='my-5 flex justify-center'>
+                        <Pagination showControls total={10} initialPage={1} />
+                    </div>
+                )}
             </div>
             
             <ProductQuickViewModal isOpen={isOpen} onOpenChange={onOpenChange} product={product}/>

@@ -1,4 +1,7 @@
-export const formatCurrency = (amount: number): string => {
+export const formatCurrency = (amount: number | undefined): string => {
+    if(!amount)
+      return "";
+
     return new Intl.NumberFormat('fil-PH', {
         style: 'currency',
         currency: 'PHP',

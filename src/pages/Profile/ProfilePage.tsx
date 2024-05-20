@@ -31,7 +31,7 @@ const ProfilePage = () => {
                       radius="full"
                     />          
                     <p className="text-tiny text-center uppercase font-bold">Admin</p>
-                    <Button className="mt-3" color="primary" >Edit Profile</Button>
+                    <Button className="mt-3" color="primary" variant="shadow">Edit Profile</Button>
               </CardBody>
             </Card>
             </div>

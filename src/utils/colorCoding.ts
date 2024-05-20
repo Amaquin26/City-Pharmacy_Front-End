@@ -1,14 +1,14 @@
 export const colorAvailability = (
-    status: string
+    status: string | undefined
 ): "primary" | "default" | "secondary" | "success" | "warning" | "danger" | undefined => {
   switch (status) {
-    case "low":
+    case "none":
       return "danger";
-    case "medium":
+    case "low":
       return "warning";
     case "high":
       return "success";
     default:
-      return undefined;
+      return "primary";
   }
 };

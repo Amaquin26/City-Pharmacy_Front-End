@@ -2,7 +2,7 @@ import { Product } from "../../types/types";
 
 const products: Product[] = [
     {
-        id: "1",
+        id: 1,
         name: "Cetaphil Gentle Skin Cleanser",
         manufacturer: "Galderma",
         category: "Skincare",
@@ -18,7 +18,7 @@ const products: Product[] = [
         quantity: 60
     },
     {
-        id: "2",
+        id: 2,
         name: "Gatorade Thirst Quencher",
         manufacturer: "PepsiCo",
         category: "Sports Drinks",
@@ -34,7 +34,7 @@ const products: Product[] = [
         quantity: 1
     },
     {
-        id: "3",
+        id: 3,
         name: "Neutrogena Hydro Boost Water Gel Moisturizer",
         manufacturer: "Johnson & Johnson",
         category: "Skincare",
@@ -50,7 +50,7 @@ const products: Product[] = [
         quantity: 1
     },
     {
-        id: "4",
+        id: 4,
         name: "Colgate Total Advanced Toothpaste",
         manufacturer: "Colgate-Palmolive",
         category: "Oral Care",
@@ -66,7 +66,7 @@ const products: Product[] = [
         quantity: 1
     },
     {
-        id: "5",
+        id: 5,
         name: "Nivea Sun Protect & Moisture Sunscreen SPF 50",
         manufacturer: "Beiersdorf",
         category: "Skin Care",

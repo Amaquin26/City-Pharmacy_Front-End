@@ -1,20 +1,32 @@
 import { Button, Card, CardBody, CardFooter, Chip, Image, Link, Tab, Tabs } from '@nextui-org/react';
 import { useParams } from 'react-router-dom'
-import products from '../../data/placeholder/products';
 import { formatCurrency, formatDate } from '../../utils/format';
 import { colorAvailability } from '../../utils/colorCoding';
-import React from 'react';
 import DynamicTable from '../../components/DynamicTable';
 import { inventory } from '../../data/placeholder/inventory';
 import { inventoryColumns, orderProductColumns } from '../../utils/constants';
 import { orderProducts } from '../../data/placeholder/orderProducts';
+import { ProductDto } from './type';
+import { useEffect, useState } from 'react';
+import { getProductById } from './repo';
+import NotFoundProduct from '../Errors/NotFoundProduct';
 
 const ProductViewPage = () => {
     const {id} = useParams<{id:string}>();
 
     let productId = 0;
 
-    
+    try{
+      productId = parseInt(id || `${id}`);
+
+      if(isNaN(productId)){
+        throw new Error("Product ID is invalid.");
+      }
+
+    }catch(e){
+      throw new Error("Product ID is invalid.");
+    }
+
     // Modify When Calling an API
     const inventoryData = inventory.map(item => ({
       ...item,
@@ -24,27 +36,29 @@ const ProductViewPage = () => {
       ...item,
       date: formatDate(item.date)
     }))
+
+    const [product,setProduct] = useState<ProductDto>();
+
+    useEffect(() => {
+      const onLoadPage = async () => {
+        try{
+          const response = await getProductById(productId);
+          setProduct(response);
+        }catch(err){
+          return (
+            <NotFoundProduct />
+          )
+        }       
+      }
+
+      onLoadPage();
+    }, [])
     
 
-
-    try{
-      productId = parseInt(id || `${id}`);
-
-      if(isNaN(productId)){
-        throw new Error("Product ID is invalid.");
-      }
-
-      // Remove this when calling an API
-      if(products.length < productId){
-        throw new Error("Product dataplaceholder out of bound.");
-      }
-
-    }catch(e){
-      throw new Error("Product ID is invalid.");
-    }
-
-    // Modify when calling an API
-    let product = products[productId - 1];
+    if(!product)
+      return (
+        <NotFoundProduct />
+      )
 
   return (
     <div className="min-h-screen px-4">

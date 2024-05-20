@@ -6,14 +6,45 @@ import DynamicTable from '../../components/DynamicTable';
 import { inventory } from '../../data/placeholder/inventory';
 import { inventoryColumns, orderProductColumns } from '../../utils/constants';
 import { orderProducts } from '../../data/placeholder/orderProducts';
-import medicines from '../../data/placeholder/medicines';
+import { MedicineDTO } from './type';
+import { useEffect, useState } from 'react';
+import { getMedicineById } from './repo';
+import NotFoundMedicine from '../Errors/NotFoundMedicine';
 
 const MedicineViewPage = () => {
   const {id} = useParams<{id:string}>();
 
   let medicineId = 0;
-
   
+  try{
+    medicineId = parseInt(id || `${id}`);
+
+    if(isNaN(medicineId)){
+      throw new Error("Medicine ID is invalid.");
+    }
+
+  }catch(e){
+    throw new Error("Medicine ID is invalid.");
+  }
+
+  const [medicine,setMedicine] = useState<MedicineDTO>();
+
+  useEffect(() => {
+    const onLoadPage = async () => {
+      try{
+        const response = await getMedicineById(medicineId);
+        setMedicine(response);
+      }catch(err){
+        return (
+          <NotFoundMedicine />
+        )
+      }       
+    }
+
+    onLoadPage();
+  }, [])
+
+
   // Modify When Calling an API
   const inventoryData = inventory.map(item => ({
     ...item,
@@ -23,27 +54,11 @@ const MedicineViewPage = () => {
     ...item,
     date: formatDate(item.date)
   }))
-  
 
-
-  try{
-    medicineId = parseInt(id || `${id}`);
-
-    if(isNaN(medicineId)){
-      throw new Error("Medicine ID is invalid.");
-    }
-
-    // Remove this when calling an API
-    if(medicines.length < medicineId){
-      throw new Error("Medicine dataplaceholder out of bound.");
-    }
-
-  }catch(e){
-    throw new Error("Medicine ID is invalid.");
-  }
-
-  // Modify when calling an API
-  let medicine = medicines[medicineId - 1];
+  if(!medicine)
+    return (
+      <NotFoundMedicine />
+    )
 
   return (
     <div className="min-h-screen px-4">

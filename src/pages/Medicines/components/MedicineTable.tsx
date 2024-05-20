@@ -110,9 +110,11 @@ const MedicineTable: React.FC<{
                 <TableCell>{formatCurrency(item.price)}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
                 <TableCell>
-                    <Chip size="sm" color={colorAvailability(item.availability)} variant="bordered">
-                        {item.availability}
-                    </Chip>
+                    <div className="w-full flex justify-center">
+                      <Chip size="sm" color={colorAvailability(item.availability)} variant="bordered">
+                          {item.availability}
+                      </Chip>
+                    </div>
                 </TableCell>
                 <TableCell>
                     <div className="relative flex items-center gap-2">
